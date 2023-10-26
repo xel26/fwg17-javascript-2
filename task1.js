@@ -76,10 +76,10 @@ console.log(panjangKata)
 
 
 
-// 9. push() = menambahkan element ke urutan akhir array
-let array = ["html", "css"]
-array.push("javascript")
-console.log(array)
+// 9. includes = untuk memeriksa apakah sebuah string memiliki karakter tertentu menghasilkan output true atau false
+let text = "Javascript"
+console.log(text.includes("vas"))
+
 
 
 
