@@ -159,7 +159,7 @@ const findName = (filter, limit, callback) => {                                 
         for(let j = 0; j < lowercaseName.length; j++){                                      // - melooping tiap huruf dari nama yang sudah di jadikan huruf kecil semua
 
             let fragment = ""                                                               // - deklarasi variable fragment untuk menyimpan penggalan kata dengan panjang sesuai dengan panjang kata pada keyword
-            for(let k = j + 1 ; k < keyword.length + j  ; k++){                             // - deskripsi alur program loopingan ada di halaman bawah
+            for(let k = j + 1 ; k < keyword.length + j  ; k++){                             // - melooping huruf untuk mencari penggalan kata yang sesuai dengan keyword
                 if(lowercaseName[k]){                                   
                     if( k > j + 1) {
                         fragment += lowercaseName[k]
