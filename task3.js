@@ -6,7 +6,7 @@ const nilai = (nilaiAwal, nilaiAkhir, dataArray) => {
 
     if(nilaiAwal < nilaiAkhir){                                                                     // - pengkondisian pertama true = nilai awal lebih kecil dari nilai akhir akhir
         if(jumlahData > 5){                                                                         // - pengkondisian kedua true = jumlah data harus lebih dari 5
-            dataArray.forEach(data =>  {                                                         // - melooping dataArray
+            dataArray.forEach(data =>  {                                                            // - melooping dataArray
                 if(data >= nilaiAwal && data <= nilaiAkhir){                                        // - pengkondisian = mencari data yang memiliki nilai diantara nilaiAwal dan nilaiAkhir
                     output.push(data)                                                               // - memasukan nilai yang sesuai ke dalam variable output
                 }
