@@ -22,7 +22,7 @@ const data = [
 
 // built in function :                                                               
 
-    const selectedName = (filter, limit) => {                       // - membuat function yang menerima parameter keyword dan limit
+    const selectedName = (filter, limit, callback) => {             // - membuat function yang menerima parameter keyword, limit, dan callback
         let keyword = filter.toLowerCase()                          // - mengubah input keyword menjadi huruf kecil agar sesuai dengna program
 
         if(isNaN(limit)){                                           // - mengecek input limit merupakan berupa number. jika bukan number tampilkan pesan tersebut dan program berhenti
@@ -30,24 +30,22 @@ const data = [
             return
         }
 
-        let filteredName = []                                       // - deklarasi variable filteredName bertipe array untuk menyimpan data nama yang sesuai keyword
-        data.forEach(name => {                                      // - melooping array data 
-            const lowercaseName = name.toLowerCase();               // - tiap data nama di ubah jadi huruf kecil
-            if(lowercaseName.includes(keyword)){                    // - memeriksa apakah data nama yang sudah di jadikan huruf kecil mengandung karakter yang ada di dalam variable keyword
-                if(filteredName.length < limit){                    // - memeriksa apakah saat ini panjang array filteredName kurang dari limit, agar nanti data yang di tampilkan sesuai dengan limit yang sudah di tentukan
-                    filteredName.push(name)                         // -  jika memenuhi semua kondisi di atas maka data nama akan di tambahkan ke array urutan terakhir
-                }
-            }
-        })
-        console.log(filteredName)                                   // - mencetak filteredName ke terminal
-    }
-    
-    const searchName = (keyword, limit, callback) => {              // - membuat function searchName yang menerima parameter keyword, limit, dan callback      
-        callback(keyword, limit)                                    // - memanggil function callback dan mengirim parameter keyword dan limit
-    }
-
-    searchName("an", 3, selectedName)                               // - memanggil function searchName dengan mengirim parameter keyword berupa string, limit berupa number, dan callback function
-
+        let filteredName = []                                                                          // - deklarasi variable filteredName bertipe array untuk menyimpan data nama yang sesuai keyword
+        data.forEach(name => {                                                                         // - melooping array data menggunakan forEach
+            const lowercaseName = name.toLowerCase();                                                  // - tiap data nama di ubah jadi huruf kecil
+            if(lowercaseName.includes(keyword) && filteredName.length < limit){                        // - memeriksa apakah data nama yang sudah di jadikan huruf kecil mengandung karakter yang ada di dalam variable keyword && - memeriksa apakah saat ini panjang array filteredName kurang dari limit, agar nanti data yang di simpan lalu ditampilkan sesuai dengan limit yang sudah di tentukan
+                    filteredName.push(name)                                                            // -  jika memenuhi semua kondisi di atas maka data nama akan di tambahkan ke array urutan terakhir
+            }                                  
+        })                                 
+                                    
+        callback(filteredName)                                                                         // - memanggil function callback dan mengirim parameter berupa array nama yang sudah di seleksi sesuai keyword dan sudah di limit jumlahnya
+    }                                  
+                                    
+    const display = (data) => {                                                                        // - membuat function display yang menerima parameter data      
+        console.log(data)                                                                              // - menampilkan data yang berisi 
+    }                                  
+                                
+    selectedName("an", 3, display)                                                                     // - memanggil function selectedName dengan mengirim parameter keyword berupa string, limit berupa number, dan callback function
 
 
     console.log('\n')
@@ -149,24 +147,19 @@ const upperToLower = (text) => {                                    // - membuat
 
 
 
-const sortedName = (filter, limit) => {                                // - membuat function sortedName yang menerima parameter filter dan limit
-    let keyword = upperToLower(filter)                                 // - mengubah huruf kapital input filter menjadi huruf kecil dengan function upperToLower agar sesuai dengan program
+const findName = (filter, limit, callback) => {                         // - membuat function sortedName yang menerima parameter filter dan limit
+    let keyword = callback(filter)                                      // - mengubah huruf kapital input filter menjadi huruf kecil agar sesuai dengan proses dalam program
 
-    // console.log(filter)
-    // console.log(keyword)
+    let chosenName = []                                                 // - deklarasi variable chosenName untuk menyimpan data nama yang sesuai dengan keyword
 
-    let chosenName = []                                                // - deklarasi variable chosenName untuk menyimpan data nama yang sesuai dengan keyword
+    for(let i = 0; i < data.length; i++){                               // - melooping array data
 
-    for(let i = 0; i < data.length; i++){                              // - melooping array data
-        const lowercaseName = upperToLower(data[i]);                   // - mengubah huruf kapital dari nama agar menjadi huruf kecil semua
-
-        // console.log(data[i])
-        // console.log(lowercaseName)
+        const lowercaseName = callback(data[i]);                        // - mengubah huruf kapital dari nama agar menjadi huruf kecil semua
 
         for(let j = 0; j < lowercaseName.length; j++){                  // - melooping tiap huruf dari nama yang sudah di jadikan huruf kecil semua
 
-            let fragment = ""                                           // - deklarasi variable fragment untuk menyimpan penggalan kata dengan panjang sesuai limit
-            for(let k = j ; k < j + keyword.length  ; k++){              // - melooping tiap huruf untuk di jadikan penggalan kata yang akan di bandingkan dengan keyword. yang panjang katanya sama dengan panjang kata pada keyword
+            let fragment = ""                                           // - deklarasi variable fragment untuk menyimpan penggalan kata dengan panjang sesuai dengan panjang kata pada keyword
+            for(let k = j ; k < j + keyword.length  ; k++){             // - melooping tiap huruf untuk di jadikan penggalan kata yang akan di bandingkan dengan keyword
                 if(lowercaseName[k]){                                   
                     fragment += lowercaseName[k]                        
                 }
@@ -183,8 +176,4 @@ const sortedName = (filter, limit) => {                                // - memb
 }
 
 
-const findName = (filter, limit, callback) => {                         // - membuat function findName yang menerima parameter filter, limit, dan callback
-    callback(filter, limit)                                             // - memanggil function callback dan mengirim parameter filter dan limit
-}
-
-findName("an", 3, sortedName)                                           // - memanggil function findName dengna mengirim parameter, limit, dan callback
+findName("an", 3, upperToLower)                                         // - memanggil function findName dengna mengirim parameter keyword, limit, dan callback

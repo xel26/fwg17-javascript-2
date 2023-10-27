@@ -6,11 +6,11 @@ const nilai = (nilaiAwal, nilaiAkhir, dataArray) => {
 
     if(nilaiAwal < nilaiAkhir){                                                                     // - pengkondisian pertama true = nilai awal lebih kecil dari nilai akhir akhir
         if(jumlahData > 5){                                                                         // - pengkondisian kedua true = jumlah data harus lebih dari 5
-            for (const data of dataArray) {                                                         // - melooping dataArray
+            dataArray.forEach(data =>  {                                                         // - melooping dataArray
                 if(data >= nilaiAwal && data <= nilaiAkhir){                                        // - pengkondisian = mencari data yang memiliki nilai diantara nilaiAwal dan nilaiAkhir
                     output.push(data)                                                               // - memasukan nilai yang sesuai ke dalam variable output
                 }
-            }
+            })
 
             output.sort((a, b) => a - b);                                                           // - mengurutkan output
 
@@ -58,7 +58,7 @@ const sortedOutput = (value) => {                                               
             const shift = value[i];                                             // - angka yang lebih besar akan di simpan di variable sementara
             value[i] = value[j];                                                // - angka kecil pindah ke posisi angka besar
             value[j] = shift;                                                   // - angka besar pindah ke posisi angka kecil
-          }                                                                     // - misal angka di index 0 adalah 7 dan angka di index 1 adalah 2. maka 7 akan pindah ke index 1 dan 2 akan pindah ke index 0
+          }                                                                     //   misal angka di index 0 adalah 7 dan angka di index 1 adalah 2. maka 7 akan pindah ke index 1 dan 2 akan pindah ke index 0
         }
       }
 }
@@ -77,7 +77,7 @@ const sortedOutput = (value) => {                                               
 
 /*
     pengkondisian for pertama = i < 3
-    pengkondisian for kedua = i < 3
+    pengkondisian for kedua = j < 3
     output sebelum di urutkan = [14, 17, 8]
 
 
@@ -86,8 +86,7 @@ const sortedOutput = (value) => {                                               
     17 = index[1]
     8 = index[2]
     for pertama di mulai dari 0. karena 0 < 3 kemudian masuk ke for kedua
-    for kedua di mulai dari 0 sesuai dengan i di for pertama. karena 0 < 3 kemudian masuk ke if condition
-    lalu di cek 14 > 14. karena tidak memenuhi kondisi. index 0 di increment menjadi 1. karena 1 < 3 kemudian masuk ke if condition
+    for kedua di mulai dari 1 karena 1 < 3 kemudian masuk ke if condition
     lalu di cek 14 > 17. karena tidak memenuhi kondisi. index 1 di inrement menjadi 2. karena 2 < 3 kemudian masuk ke if condition
     lalu di cek 14 > 8. karena memenuhi kondisi.
     14 di simpan di variable shift
@@ -102,8 +101,7 @@ const sortedOutput = (value) => {                                               
     17 = index[1]
     8 = index[0]
     di for pertama 0 di increment menjadi 1. karena 1 < 3 kemudian masuk ke for kedua
-    di for kedua di mulai dari 1 sesuai dengan i di for pertama. karena 1 < 3 kemudian masuk ke if condition
-    lalu di cek 17 > 17. karena tidak memenuhi kondisi. index 1 di increment menjadi 2. karena 2 < 3 kemudian masuk ke if condition
+    di for kedua di mulai dari 2  karena 2 < 3 kemudian masuk ke if condition
     lalu di cek 17 > 14. karena memenuhi kondisi.
     17 di simpan di variable shift
     14 di simpan di posisi 17
@@ -117,8 +115,7 @@ const sortedOutput = (value) => {                                               
     17 = index[2]
     8 = index[0]
     di for pertama 1 di increment menjadi 2. karena 2 < 3 kemudian masuk ke for kedua
-    di for kedua di mulai dari 2 sesuai dengan i di for pertama. karena 2 < 3 kemudian masuk ke if condition
-    lalu di cek 17 > 17. karena tidak memenuhi kondisi. index 2 di increment menjadi 3. karena 3 tidak < 3 maka kembali ke for pertama
+    di for kedua di mulai dari 3 karena 3 tidak < 3 loopingan berhenti dan kembali ke for pertama
 
 
     di for pertama 2 di increment menjadi 3. karena 3 tidak < 3 maka loopingan berhenti
