@@ -147,33 +147,38 @@ const upperToLower = (text) => {                                    // - membuat
 
 
 
-const findName = (filter, limit, callback) => {                         // - membuat function sortedName yang menerima parameter filter dan limit
-    let keyword = callback(filter)                                      // - mengubah huruf kapital input filter menjadi huruf kecil agar sesuai dengan proses dalam program
+const findName = (filter, limit, callback) => {                                             // - membuat function sortedName yang menerima parameter filter dan limit
+    let keyword = callback(filter)                                                          // - mengubah huruf kapital input filter menjadi huruf kecil agar sesuai dengan proses dalam program
 
-    let chosenName = []                                                 // - deklarasi variable chosenName untuk menyimpan data nama yang sesuai dengan keyword
+    let chosenName = []                                                                     // - deklarasi variable chosenName untuk menyimpan data nama yang sesuai dengan keyword
 
-    for(let i = 0; i < data.length; i++){                               // - melooping array data
+    for(let i = 0; i < data.length; i++){                                                   // - melooping array data
 
-        const lowercaseName = callback(data[i]);                        // - mengubah huruf kapital dari nama agar menjadi huruf kecil semua
+        const lowercaseName = callback(data[i]);                                            // - mengubah huruf kapital dari nama agar menjadi huruf kecil semua
 
-        for(let j = 0; j < lowercaseName.length; j++){                  // - melooping tiap huruf dari nama yang sudah di jadikan huruf kecil semua
+        for(let j = 0; j < lowercaseName.length; j++){                                      // - melooping tiap huruf dari nama yang sudah di jadikan huruf kecil semua
 
-            let fragment = ""                                           // - deklarasi variable fragment untuk menyimpan penggalan kata dengan panjang sesuai dengan panjang kata pada keyword
-            for(let k = j ; k < j + keyword.length  ; k++){             // - melooping tiap huruf untuk di jadikan penggalan kata yang akan di bandingkan dengan keyword
+            let fragment = ""                                                               // - deklarasi variable fragment untuk menyimpan penggalan kata dengan panjang sesuai dengan panjang kata pada keyword
+            for(let k = j + 1 ; k < keyword.length + j  ; k++){                             // - deskripsi alur program loopingan ada di halaman bawah
                 if(lowercaseName[k]){                                   
-                    fragment += lowercaseName[k]                        
+                    if( k > j + 1) {
+                        fragment += lowercaseName[k]
+                    }else{
+                        fragment += lowercaseName[j] + lowercaseName[k]
+                    }                      
                 }
             }
+            console.log(fragment)
 
-            if(keyword === fragment                                     // - mengecek keyword sama dengan penggalan kata di fragment
-                && chosenName.indexOf(data[i]) === -1                   // - mengecek bahwa tidak ada data yang sama dengan data saat ini  di dalam variable. untuk mencegah data duplikat
-                && chosenName.length < limit){                          // - mengecek panjang data kurang dari limit agar data dalam variable tidak lebih dari limit                                                                                                            
-                chosenName = [...chosenName, data[i]]                   // - jika memenuhi semua kondisi di atas maka nama akan di masukan ke variable chosenName
-            }
-        }
-    }
-    console.log(chosenName)                                             // - menampilkan nama yang sudah di seleksi berdasarkan  keyword dan limit
-}
+            if(keyword === fragment                                                         // - mengecek keyword sama dengan penggalan kata di fragment
+                && chosenName.indexOf(data[i]) === -1                                       // - mengecek bahwa tidak ada data yang sama dengan data saat ini  di dalam variable. untuk mencegah data duplikat
+                && chosenName.length < limit){                                              // - mengecek panjang data kurang dari limit agar data dalam variable tidak lebih dari limit                                                                                                            
+                chosenName = [...chosenName, data[i]]                                       // - jika memenuhi semua kondisi di atas maka nama akan di masukan ke variable chosenName
+            }                   
+        }                   
+    }                   
+    console.log(chosenName)                                                                 // - menampilkan nama yang sudah di seleksi berdasarkan  keyword dan limit
+}                   
 
 
-findName("an", 3, upperToLower)                                         // - memanggil function findName dengna mengirim parameter keyword, limit, dan callback
+findName("an", 3, upperToLower)                                                             // - memanggil function findName dengna mengirim parameter keyword, limit, dan callback
