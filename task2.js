@@ -1,28 +1,20 @@
-const data = [
-  "Abigail",
-  "Alexandra",
-  "Alison",
-  "Amanda",
-  "Angela",
-  "Bella",
-  "Carol",
-  "Caroline",
-  "Carolyn",
-  "Deirde",
-  "Diana",
-  "Elizabeth",
-  "Ella",
-  "Faith",
-  "Olivia",
-  "Penelope",
+const nama = [
+  "Abigail", "Alexandra", "Alison",
+  "Amanda", "Angela", "Bella",
+  "Carol", "Caroline", "Carolyn",
+  "Deirde", "Diana", "Elizabeth",
+  "Ella", "Faith", "Olivia", "Penelope",
 ]
 
 
 
 
-// built in function :                                                               
 
-    const selectedName = (filter, limit, callback) => {             // - membuat function yang menerima parameter keyword, limit, dan callback
+console.log("built in function :")                                                               
+{
+    const searchName = (filter, limit, callback) => {              // - membuat function yang menerima parameter keyword, limit, dan callback
+        const data = [...nama]
+
         let keyword = filter.toLowerCase()                          // - mengubah input keyword menjadi huruf kecil agar sesuai dengna program
 
         if(isNaN(limit)){                                           // - mengecek input limit merupakan berupa number. jika bukan number tampilkan pesan tersebut dan program berhenti
@@ -45,8 +37,8 @@ const data = [
         console.log(data)                                                                              // - menampilkan data yang berisi 
     }                                  
                                 
-    selectedName("an", 3, display)                                                                     // - memanggil function selectedName dengan mengirim parameter keyword berupa string, limit berupa number, dan callback function
-
+    searchName("an", 3, display)                                                                       // - memanggil function selectedName dengan mengirim parameter keyword berupa string, limit berupa number, dan callback function
+}
 
     console.log('\n')
 
@@ -65,8 +57,9 @@ const data = [
 
 
 
-// tanpa built in function :
+console.log("tanpa built in function :") 
 
+{
 const upperToLower = (text) => {                                    // - membuat function upperToLower yang menerima parameter text sebagai program untuk mengubah huruf besar menjadi huruf kecil
     const upper ={                                                  // - membuat object upper yang berisi key huruf kapital dan value nomor urut dari huruf tersebut
         A: 65,
@@ -141,13 +134,11 @@ const upperToLower = (text) => {                                    // - membuat
 }
 
 
-// let testMyProgram = "JavaScript"
-// console.log(upperToLower(testMyProgram))
 
 
+const searchName = (filter, limit, callback) => {                                           // - membuat function sortedName yang menerima parameter filter dan limit
+    const data = [...nama]
 
-
-const findName = (filter, limit, callback) => {                                             // - membuat function sortedName yang menerima parameter filter dan limit
     let keyword = callback(filter)                                                          // - mengubah huruf kapital input filter menjadi huruf kecil agar sesuai dengan proses dalam program
 
     let chosenName = []                                                                     // - deklarasi variable chosenName untuk menyimpan data nama yang sesuai dengan keyword
@@ -168,7 +159,6 @@ const findName = (filter, limit, callback) => {                                 
                     }                      
                 }
             }
-            console.log(fragment)
 
             if(keyword === fragment                                                         // - mengecek keyword sama dengan penggalan kata di fragment
                 && chosenName.indexOf(data[i]) === -1                                       // - mengecek bahwa tidak ada data yang sama dengan data saat ini  di dalam variable. untuk mencegah data duplikat
@@ -176,9 +166,15 @@ const findName = (filter, limit, callback) => {                                 
                 chosenName = [...chosenName, data[i]]                                       // - jika memenuhi semua kondisi di atas maka nama akan di masukan ke variable chosenName
             }                   
         }                   
+    }
+
+    if(chosenName.length > 0){                                                              // - mengecek bahwa variable chosenName tidak kosong
+        console.log(chosenName)                                                             // - menampilkan nama yang sudah di seleksi berdasarkan  keyword dan limit
+    }else{
+        console.log(`nama dengan keyword "${filter}" tidak di temukan`)                     // - jika kosong maka akan di tampilkan pesan tersebut
     }                   
-    console.log(chosenName)                                                                 // - menampilkan nama yang sudah di seleksi berdasarkan  keyword dan limit
 }                   
 
 
-findName("an", 3, upperToLower)                                                             // - memanggil function findName dengna mengirim parameter keyword, limit, dan callback
+searchName("an", 3, upperToLower)                                                             // - memanggil function findName dengna mengirim parameter keyword, limit, dan callback
+}

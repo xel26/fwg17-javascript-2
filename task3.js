@@ -1,41 +1,38 @@
-// built in function :
 
-const nilai = (nilaiAwal, nilaiAkhir, dataArray) => {
-    const jumlahData = dataArray.length                                                             // - mengambil jumlah data dalam dataArray
-    const output = []                                                                               // - deklarasi variable output = untuk tempat menyimpan data yang di cari
+console.log("built in function :")
 
-    if(nilaiAwal < nilaiAkhir){                                                                     // - pengkondisian pertama true = nilai awal lebih kecil dari nilai akhir akhir
-        if(jumlahData > 5){                                                                         // - pengkondisian kedua true = jumlah data harus lebih dari 5
-            dataArray.forEach(data =>  {                                                            // - melooping dataArray
-                if(data >= nilaiAwal && data <= nilaiAkhir){                                        // - pengkondisian = mencari data yang memiliki nilai diantara nilaiAwal dan nilaiAkhir
-                    output.push(data)                                                               // - memasukan nilai yang sesuai ke dalam variable output
-                }
-            })
+{
+const seleksiNilai = (nilaiAwal, nilaiAkhir, dataArray) => {
+    if(nilaiAwal > nilaiAkhir){                                                             // - jika nilaAwal lebih besar dari nilaiAkhir maka program akan berhenti dan menampilkan pesan tersebut
+        return console.log('"Nilai Akhir harus lebih besar dari nilai awal"')
+    }else if(dataArray.length  <= 5){                                                       // - jika panjang dataArray tidak lebih dari 5 maka program akan berhenti dan menampilkan pesan tersebut
+        return console.log('"Jumlah angka dalam dataArray harus lebih  dari 5"')
+    }
 
-            output.sort((a, b) => a - b);                                                           // - mengurutkan output
 
-            if(output.length != 0){                                                                 // - pengkondisian = memeriksa variable output kosong atau tidak
-                console.log(output)                                                                 // - menampilkan nilai jika output tidak kosong
-            }else{
-                console.log('"Nilai tidak ditemukan"')                                              // - menampilkan pesan jika output kosong
-            }
-
-        }else{
-            console.log('"Jumlah angka dalam dataArray harus lebih  dari 5"')                       // - pengkondisian kedua false = jumlah data kurang atau sama dengan 5
+    const output = []                                                                       // - deklarasi variable output = untuk tempat menyimpan data yang di cari
+    dataArray.forEach(data =>  {                                                            // - melooping dataArray
+        if(data >= nilaiAwal && data <= nilaiAkhir){                                        // - pengkondisian = mencari data yang memiliki nilai diantara nilaiAwal dan nilaiAkhir
+            output.push(data)                                                               // - memasukan nilai yang sesuai ke dalam variable output
         }
+    })
+
+    if(output.length > 0){                                                                 // - pengkondisian = memeriksa variable output kosong atau tidak
+        output.sort((a, b) => a - b);                                                       // - mengurutkan output
+        return console.log(output)                                                          // - menampilkan nilai jika output tidak kosong
     }else{
-        console.log('"Nilai Akhir harus lebih besar dari nilai awal"')                              // - pengkondisian pertama false = nilai awal lebih besar dari nilai akhir
+        return console.log('"Nilai tidak ditemukan"')                                       // - menampilkan pesan jika output kosong
     }
 }
 
-nilai(5, 20, [2, 25, 4, 14, 17, 30, 8])
+seleksiNilai(5, 20, [2, 25, 4, 14, 17, 30, 8])
 
-nilai(15, 3, [2, 25, 4, 14, 17, 30, 8])
+seleksiNilai(15, 3, [2, 25, 4, 14, 17, 30, 8])
 
-nilai(4, 17, [2, 25, 4])
+seleksiNilai(4, 17, [2, 25, 4])
 
-nilai(5, 17, [2, 25, 4, 1, 30, 18])
-
+seleksiNilai(5, 17, [2, 25, 4, 1, 30, 18])
+}
 
 
 console.log('\n')
@@ -48,9 +45,9 @@ console.log('\n')
 
 
 
-// tanpa built in function :
+console.log("tanpa built in function :")
 
-
+{
 const sortedOutput = (value) => {                                               // - membuat function sortedOutput yang menerima parameter value yang berisi array angka
     for (let i = 0; i < value.length; i++) {                                    // - melooping angka dalam array
         for (let j = i + 1; j < value.length; j++) {                            // - melooping angka untuk membandingkan dengan angka-angka selanjutnya. misal index 0 akan di bandingkan dengan index 1, index 2, index 3 dan seterusnya
@@ -60,9 +57,50 @@ const sortedOutput = (value) => {                                               
             value[j] = shift;                                                   // - angka besar pindah ke posisi angka kecil
           }                                                                     //   misal angka di index 0 adalah 7 dan angka di index 1 adalah 2. maka 7 akan pindah ke index 1 dan 2 akan pindah ke index 0
         }
+        console.log(`sortedOutput ${value}`)
       }
 }
 
+
+
+
+
+const seleksiNilai = (nilaiAwal, nilaiAkhir, dataArray) => {                                      // - membuat function yang menerima parameter nilaiAwal, nilaiAkhir, dan dataArray
+    if(nilaiAwal > nilaiAkhir){                                                                   // - jika nilaAwal lebih besar dari nilaiAkhir maka program akan berhenti dan menampilkan pesan tersebut
+        return console.log('"Nilai Akhir harus lebih besar dari nilai awal"')
+    }else if(dataArray.length  <= 5){                                                             // - jika panjang dataArray tidak lebih dari 5 maka program akan berhenti dan menampilkan pesan tersebut
+        return console.log('"Jumlah angka dalam dataArray harus lebih  dari 5"')
+    }
+
+    let output = []                                                                                // - deklarasi variable output = untuk tempat menyimpan data yang di cari
+    for (let i = 0; i < dataArray.length; i++) {                                                   // - melooping dataArray
+        if(dataArray[i] >= nilaiAwal && dataArray[i] <= nilaiAkhir){                               // - pengkondisian = mencari data yang memiliki nilai diantara nilaiAwal dan nilaiAkhir
+            output = [...output, dataArray[i]]                                                     // - memasukan nilai yang sesuai ke dalam variable output
+        }
+    }
+
+    if(output.length > 0){                                                                         // - pengkondisian = memeriksa variable output kosong atau tidak
+        sortedOutput(output)                                                                       // - memanggil function sortedOutput untuk mengurutkan output
+        console.log(output)                                                                        // - menampilkan nilai jika output tidak kosong
+    }else{
+        console.log('"Nilai tidak ditemukan"')                                                     // - menampilkan pesan jika output kosong
+    }
+}
+
+seleksiNilai(5, 20, [2, 25, 4, 14, 17, 30, 8])                                                      // - memanggil function dan mengirim parameter nilaiAwal, nilaiAkhir, dan dataArray
+
+seleksiNilai(15, 3, [2, 25, 4, 14, 17, 30, 8])
+
+seleksiNilai(4, 17, [2, 25, 4])
+
+seleksiNilai(5, 17, [2, 25, 4, 1, 30, 18])
+ 
+
+
+
+
+
+// alur program function sortedOutput, untuk mengurutkan data terkecil ke terbesar:
 
 // const testMyProgram = () => {
 //     let arr = [9, 0, 2, 7, 1, 5, -1]
@@ -72,8 +110,6 @@ const sortedOutput = (value) => {                                               
 // testMyProgram()
 
 
-
-// alur program function sortedOutput :
 
 /*
     pengkondisian for pertama = i < 3
@@ -121,44 +157,4 @@ const sortedOutput = (value) => {                                               
     di for pertama 2 di increment menjadi 3. karena 3 tidak < 3 maka loopingan berhenti
     dan hasil posisinya [8, 14, 17]
 */
-
-
-
-
-
-const valuation = (nilaiAwal, nilaiAkhir, dataArray) => {                                         // - membuat function yang menerima parameter nilaiAwal, nilaiAkhir, dan dataArray
-    const jumlahData = dataArray.length                                                           // - mengambil jumlah data dalam dataArray
-    let output = []                                                                               // - deklarasi variable output = untuk tempat menyimpan data yang di cari
-
-    if(nilaiAwal < nilaiAkhir){                                                                   // - pengkondisian pertama true = nilai awal lebih kecil dari nilai akhir akhir
-        if(jumlahData > 5){                                                                       // - pengkondisian kedua true = jumlah data harus lebih dari 5
-            for (let i = 0; i < dataArray.length; i++) {                                          // - melooping dataArray
-                if(dataArray[i] >= nilaiAwal && dataArray[i] <= nilaiAkhir){                      // - pengkondisian = mencari data yang memiliki nilai diantara nilaiAwal dan nilaiAkhir
-                    output = [...output, dataArray[i]]                                            // - memasukan nilai yang sesuai ke dalam variable output
-                }
-            }
-
-            sortedOutput(output)                                                                    // - memanggil function sortedOutput untuk mengurutkan output
-
-            if(output.length != 0){                                                                 // - pengkondisian = memeriksa variable output kosong atau tidak
-                console.log(output)                                                                 // - menampilkan nilai jika output tidak kosong
-            }else{
-                console.log('"Nilai tidak ditemukan"')                                              // - menampilkan pesan jika output kosong
-            }
-
-        }else{
-            console.log('"Jumlah angka dalam dataArray harus lebih  dari 5"')                       // - pengkondisian kedua false = jumlah data kurang atau sama dengan 5
-        }
-    }else{
-        console.log('"Nilai Akhir harus lebih besar dari nilai awal"')                              // - pengkondisian pertama false = nilai awal lebih besar dari nilai akhir
-    }
 }
-
-valuation(5, 20, [2, 25, 4, 14, 17, 30, 8])                                                         // - memanggil function dan mengirim parameter nilaiAwal, nilaiAkhir, dan dataArray
-
-valuation(15, 3, [2, 25, 4, 14, 17, 30, 8])
-
-valuation(4, 17, [2, 25, 4])
-
-valuation(5, 17, [2, 25, 4, 1, 30, 18])
- 
