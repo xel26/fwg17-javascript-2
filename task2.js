@@ -4,6 +4,10 @@ const nama = [
   "Carol", "Caroline", "Carolyn",
   "Deirde", "Diana", "Elizabeth",
   "Ella", "Faith", "Olivia", "Penelope",
+
+
+//   debugging nama duplikat
+//   "ananda"
 ]
 
 
@@ -136,6 +140,29 @@ const upperToLower = (text) => {                                    // - membuat
 
 
 
+
+const duplicateDetector = (array, nama) => {
+    let output
+    if(array.length > 0){
+        for(let x = 0; x < array.length; x++){
+            if(array[x] !== nama){
+                output = -1
+            }else{
+                return output = 1
+            }
+        }
+    
+        return output
+    }else{
+        return output = -1
+    }
+}
+
+
+
+
+
+
 const searchName = (filter, limit, callback) => {                                           // - membuat function sortedName yang menerima parameter filter dan limit
     const data = [...nama]
 
@@ -160,8 +187,10 @@ const searchName = (filter, limit, callback) => {                               
                 }
             }
 
+            const duplicate = duplicateDetector(chosenName, data[i])                       // INISIALISASI variable duplicate dengan pemanggilan fungsi duplicateDetector dan mengirim dua parameter untuk mengecek apakah ada nama yang sama dengan nama saat ini di dalam array chosenName. jika tidak ada nama yang sama maka fungsi akan mereturn nilai -1
+
             if(keyword === fragment                                                         // - mengecek keyword sama dengan penggalan kata di fragment
-                && chosenName.indexOf(data[i]) === -1                                       // - mengecek bahwa tidak ada data yang sama dengan data saat ini  di dalam variable. untuk mencegah data duplikat
+                && duplicate === -1                                                         // - jika variable duplicate bernilai -1 maka artinya tidak ada data yang sama dengan data saat ini  di dalam variable sehingga tidak akan ada data duplikat di dalam array
                 && chosenName.length < limit){                                              // - mengecek panjang data kurang dari limit agar data dalam variable tidak lebih dari limit                                                                                                            
                 chosenName = [...chosenName, data[i]]                                       // - jika memenuhi semua kondisi di atas maka nama akan di masukan ke variable chosenName
             }                   
