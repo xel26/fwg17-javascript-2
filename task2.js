@@ -7,7 +7,7 @@ const nama = [
 
 
 //   debugging nama duplikat
-//   "ananda"
+  "ananda"
 ]
 
 
@@ -205,5 +205,5 @@ const searchName = (filter, limit, callback) => {                               
 }                   
 
 
-searchName("an", 3, upperToLower)                                                             // - memanggil function findName dengna mengirim parameter keyword, limit, dan callback
+searchName("an", 13, upperToLower)                                                             // - memanggil function findName dengna mengirim parameter keyword, limit, dan callback
 }
