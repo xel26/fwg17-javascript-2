@@ -9,7 +9,6 @@ const seleksiNilai = (nilaiAwal, nilaiAkhir, dataArray) => {
         return console.log('"Jumlah angka dalam dataArray harus lebih  dari 5"')
     }
 
-
     const output = []                                                                       // - deklarasi variable output = untuk tempat menyimpan data yang di cari
     dataArray.forEach(data =>  {                                                            // - melooping dataArray
         if(data >= nilaiAwal && data <= nilaiAkhir){                                        // - pengkondisian = mencari data yang memiliki nilai diantara nilaiAwal dan nilaiAkhir
@@ -17,11 +16,11 @@ const seleksiNilai = (nilaiAwal, nilaiAkhir, dataArray) => {
         }
     })
 
-    if(output.length > 0){                                                                 // - pengkondisian = memeriksa variable output kosong atau tidak
+    if(output.length > 0){                                                                  // - pengkondisian = memeriksa variable output kosong atau tidak
         output.sort((a, b) => a - b);                                                       // - mengurutkan output
-        return console.log(output)                                                          // - menampilkan nilai jika output tidak kosong
+        console.log(output)                                                                 // - menampilkan nilai jika output tidak kosong
     }else{
-        return console.log('"Nilai tidak ditemukan"')                                       // - menampilkan pesan jika output kosong
+        console.log('"Nilai tidak ditemukan"')                                              // - menampilkan pesan jika output kosong
     }
 }
 
@@ -35,10 +34,10 @@ seleksiNilai(5, 17, [2, 25, 4, 1, 30, 18])
 }
 
 
+
+
+
 console.log('\n')
-
-
-
 
 
 
@@ -57,7 +56,6 @@ const sortedOutput = (value) => {                                               
             value[j] = shift;                                                   // - angka besar pindah ke posisi angka kecil
           }                                                                     //   misal angka di index 0 adalah 7 dan angka di index 1 adalah 2. maka 7 akan pindah ke index 1 dan 2 akan pindah ke index 0
         }
-        console.log(`sortedOutput ${value}`)
       }
 }
 
@@ -87,7 +85,7 @@ const seleksiNilai = (nilaiAwal, nilaiAkhir, dataArray) => {                    
     }
 }
 
-seleksiNilai(5, 20, [2, 25, 4, 14, 17, 30, 8])                                                      // - memanggil function dan mengirim parameter nilaiAwal, nilaiAkhir, dan dataArray
+seleksiNilai(5, 20, [2, 25, 4, 14, 17, 30, 8])                                                     // - memanggil function dan mengirim parameter nilaiAwal, nilaiAkhir, dan dataArray
 
 seleksiNilai(15, 3, [2, 25, 4, 14, 17, 30, 8])
 

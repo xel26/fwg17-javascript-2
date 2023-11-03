@@ -18,33 +18,30 @@ console.log("built in function :")
 {
     const searchName = (filter, limit, callback) => {              // - membuat function yang menerima parameter keyword, limit, dan callback
         const data = [...nama]
+        const keyword = filter.toLowerCase()                       // - mengubah input keyword menjadi huruf kecil agar sesuai dengna program
 
-        let keyword = filter.toLowerCase()                          // - mengubah input keyword menjadi huruf kecil agar sesuai dengna program
-
-        if(isNaN(limit)){                                           // - mengecek input limit merupakan berupa number. jika bukan number tampilkan pesan tersebut dan program berhenti
-            console.log("limit bukan berupa angka")
-            return
-        }
-
-        let filteredName = []                                                                          // - deklarasi variable filteredName bertipe array untuk menyimpan data nama yang sesuai keyword
+        const filteredName = []                                                                        // - deklarasi variable filteredName bertipe array untuk menyimpan data nama yang sesuai keyword
         data.forEach(name => {                                                                         // - melooping array data menggunakan forEach
-            const lowercaseName = name.toLowerCase();                                                  // - tiap data nama di ubah jadi huruf kecil
-            if(lowercaseName.includes(keyword) && filteredName.length < limit){                        // - memeriksa apakah data nama yang sudah di jadikan huruf kecil mengandung karakter yang ada di dalam variable keyword && - memeriksa apakah saat ini panjang array filteredName kurang dari limit, agar nanti data yang di simpan lalu ditampilkan sesuai dengan limit yang sudah di tentukan
+            if(name.toLowerCase().includes(keyword) && filteredName.length < limit){                   // - tiap data nama di ubah jadi huruf kecil dan memeriksa apakah data nama yang sudah di jadikan huruf kecil mengandung karakter yang ada di dalam variable keyword && - memeriksa apakah saat ini panjang array filteredName kurang dari limit, agar nanti data yang di simpan lalu ditampilkan sesuai dengan limit yang sudah di tentukan
                     filteredName.push(name)                                                            // -  jika memenuhi semua kondisi di atas maka data nama akan di tambahkan ke array urutan terakhir
             }                                  
         })                                 
                                     
-        callback(filteredName)                                                                         // - memanggil function callback dan mengirim parameter berupa array nama yang sudah di seleksi sesuai keyword dan sudah di limit jumlahnya
+        callback(filteredName, filter)                                                                 // - memanggil function callback dan mengirim parameter berupa array nama yang sudah di seleksi sesuai keyword dan sudah di limit jumlahnya
     }                                  
                                     
-    const display = (data) => {                                                                        // - membuat function display yang menerima parameter data      
-        console.log(data)                                                                              // - menampilkan data yang berisi 
+    const display = (data, filter) => {                                                                // - membuat function display yang menerima parameter data  
+        if(data.length !== 0){
+            console.log(data)                                                                          // - menampilkan data yang berisi 
+        }else{
+            console.log(`nama dengan keyword "${filter}" tidak di temukan`)
+        }    
     }                                  
                                 
     searchName("an", 3, display)                                                                       // - memanggil function selectedName dengan mengirim parameter keyword berupa string, limit berupa number, dan callback function
 }
 
-    console.log('\n')
+    
 
 
 
@@ -52,6 +49,8 @@ console.log("built in function :")
 
 
 
+
+console.log('\n')
 
 
 
@@ -140,23 +139,17 @@ const upperToLower = (text) => {                                    // - membuat
 
 
 
-
-const duplicateDetector = (array, nama) => {
-    let output
-    if(array.length > 0){
-        for(let x = 0; x < array.length; x++){
-            if(array[x] !== nama){
-                output = -1
-            }else{
-                return output = 1
-            }
+    const duplicateDetector = (array, nama) => {                                        // membuat fungsi duplicateDetector yg menerima 2 parameter yaitu data ARRAY dan nama
+        let output = -1                                                                 // INISIALISASI output dengan nilai -1
+        if(array.length > 0){                                                           // jika array tidak kosong dan jika ada nama yang sama di array dengan nama saat ini, maka output di REASSIGNMENT dengan nilai 1, nilai di return dan program perulangan berhenti        
+            for(let x = 0; x < array.length; x++){
+                if(array[x] === nama){                
+                    return output = 1
+                }
+            }                          
         }
-    
-        return output
-    }else{
-        return output = -1
+        return output                                                                   // output di return untuk di gunakan di fungsi lain
     }
-}
 
 
 
@@ -164,14 +157,13 @@ const duplicateDetector = (array, nama) => {
 
 
 const searchName = (filter, limit, callback) => {                                           // - membuat function sortedName yang menerima parameter filter dan limit
-    const data = [...nama]
+    const data = [...nama]                                                                  // mengcopy data nama
 
-    let keyword = callback(filter)                                                          // - mengubah huruf kapital input filter menjadi huruf kecil agar sesuai dengan proses dalam program
+    const keyword = callback(filter)                                                        // - mengubah huruf kapital input filter menjadi huruf kecil agar sesuai dengan proses dalam program
 
     let chosenName = []                                                                     // - deklarasi variable chosenName untuk menyimpan data nama yang sesuai dengan keyword
 
     for(let i = 0; i < data.length; i++){                                                   // - melooping array data
-
         const lowercaseName = callback(data[i]);                                            // - mengubah huruf kapital dari nama agar menjadi huruf kecil semua
 
         for(let j = 0; j < lowercaseName.length; j++){                                      // - melooping tiap huruf dari nama yang sudah di jadikan huruf kecil semua
@@ -187,7 +179,7 @@ const searchName = (filter, limit, callback) => {                               
                 }
             }
 
-            const duplicate = duplicateDetector(chosenName, data[i])                       // INISIALISASI variable duplicate dengan pemanggilan fungsi duplicateDetector dan mengirim dua parameter untuk mengecek apakah ada nama yang sama dengan nama saat ini di dalam array chosenName. jika tidak ada nama yang sama maka fungsi akan mereturn nilai -1
+            const duplicate = duplicateDetector(chosenName, data[i])                        // INISIALISASI variable duplicate dengan pemanggilan fungsi duplicateDetector dan mengirim dua parameter untuk mengecek apakah ada nama yang sama dengan nama saat ini didalam array chosenName. jika tidak ada nama yang sama maka fungsi akan mereturn nilai -1
 
             if(keyword === fragment                                                         // - mengecek keyword sama dengan penggalan kata di fragment
                 && duplicate === -1                                                         // - jika variable duplicate bernilai -1 maka artinya tidak ada data yang sama dengan data saat ini  di dalam variable sehingga tidak akan ada data duplikat di dalam array
@@ -205,5 +197,5 @@ const searchName = (filter, limit, callback) => {                               
 }                   
 
 
-searchName("an", 3, upperToLower)                                                             // - memanggil function findName dengna mengirim parameter keyword, limit, dan callback
+searchName("an", 3, upperToLower)                                                           // - memanggil function findName dengna mengirim parameter keyword, limit, dan callback
 }
